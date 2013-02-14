@@ -12,5 +12,5 @@
 #' @docType data
 #' @keywords datasets
 #' @format A list with two data frames
-#' @name ctestiphon
+#' @name ctesiphon
 NULL

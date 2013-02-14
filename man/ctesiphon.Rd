@@ -1,6 +1,6 @@
 \docType{data}
-\name{ctestiphon}
-\alias{ctestiphon}
+\name{ctesiphon}
+\alias{ctesiphon}
 \title{Coordinates of external and iternal edge of the Ctesiphon}
 \format{A list with two data frames}
 \description{

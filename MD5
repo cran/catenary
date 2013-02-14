@@ -1,8 +1,8 @@
-df8ebd7016583a0ad003e46c2a3763a0 *DESCRIPTION
+ad562211550c42d007883f56bb6bd07a *DESCRIPTION
 8d38feb6c8da551a437001f35de3ddb6 *NAMESPACE
-5ffadef1456db849aa5b51356e2928a1 *NEWS
+2b1a96a4646e27ed53a430dfde55adf8 *NEWS
 64b3b4ccdbc3b534315c5a9884af85bd *R/catenary.R
-4b98d8a6c815cd4916e0507fd4a5a83d *R/ctestiphon.R
+e6b7402fae40bf1602a1bc132dd65196 *R/ctesiphon.R
 ca7aeaa632fcb0432f3c2b51098802e7 *R/f.R
 d1292e21c72c14f8bb63420a8517ea95 *R/fitCat.R
 17ceea50fcbe02f6c0bd9c79ab1883ae *R/fitCatEndPts.R
@@ -14,9 +14,9 @@ e7fd41be208680ba216b451e1c7696e4 *R/fitMaxCat.R
 d396ef2f7b8b6e29eff8d00be6f2e64e *R/getFunctionEnvelopePara.R
 5931bfef58d6c9037fbe772b5a9f3dce *R/minmaxLength.R
 8da543a348202e26b553cc845eb4fefc *R/package.R
-08be605e9525a711f6b5454ef17d8d31 *data/ctestiphon.rda
-51252b479d6d21912e6332d2f03093b6 *inst/shiny/calcCat/server.R
-356a652176140263fd6c0f5c49f304e2 *inst/shiny/calcCat/ui.R
+ff72db9f2d64c1c70b47a3878ba0842f *data/ctesiphon.rda
+365c07a9214fe7cdefd44d3143d25e4b *inst/shiny/calcCat/server.R
+95894b34a861b572a61a827ab6e18e92 *inst/shiny/calcCat/ui.R
 0999fbee40c841631f90f6b41f524050 *inst/shiny/catenary/server.R
 1b3f43d5215c21c1a1e57cb4c4d26e2f *inst/shiny/catenary/ui.R
 9fb502eb0541cbafd9284f6899e1548d *inst/shiny/fittedCat/server.R
@@ -25,7 +25,7 @@ fcd9434c688361c3c809495c7839ab4a *man/Summary.Rd
 2f27db9aa9c5af9f0bed605b1be1dc04 *man/accessor-methods.Rd
 58f04603607008e18b607d0bf0687a77 *man/catenary-class.Rd
 37d8cc3d6827fba39df321db7aeefc20 *man/catenary.Rd
-3df2f515f97be2f14a282e5cfdc803da *man/ctestiphon.Rd
+53f40e54d2c099e58d66edf190c5707f *man/ctesiphon.Rd
 d3517681014c866f2b2c95fef2a366e4 *man/f.Rd
 05b6a656466cd16d38adb52849bee0dd *man/fitCat.Rd
 d7805bb5987bc22c22d8f6f683ec9313 *man/fitCatEndPts.Rd

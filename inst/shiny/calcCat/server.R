@@ -22,5 +22,16 @@ shinyServer(function(input, output) {
     print(p)
   })
   
+  output$lengthslider <- reactiveUI(function() {
+    endpoints <- matrix(c(input$x0,input$x1,input$y0,input$y1),ncol=2)
+    tmp <- minmaxLength(endpoints=endpoints)
+    xmin <- tmp[1]
+    xmax <- tmp[2]
+    
+    sliderInput(inputId = "L",
+                label = paste("Limit range"),
+                min = xmin, max = xmax, value = mean(c(xmin,xmax)))
+  })
+  
 
 })

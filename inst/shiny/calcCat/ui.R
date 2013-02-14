@@ -20,9 +20,7 @@ shinyUI(pageWithSidebar(
                   "Set length"="length")),
     conditionalPanel(
       condition = "input.natural=='length' ",
-      sliderInput("L","Length",min=x0,max=20,value=3,step=0.1))
-#       numericInput("L","Length:",4))
-    ),
+      uiOutput("lengthslider"))),
 
   
   mainPanel(
