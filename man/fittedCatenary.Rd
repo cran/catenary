@@ -1,0 +1,29 @@
+\name{fittedCatenary}
+\alias{fittedCatenary}
+\title{Creates a fittedCatenary object}
+\usage{
+  fittedCatenary(x, y, R = 1000)
+}
+\arguments{
+  \item{x}{values of x coordinates of observed values}
+
+  \item{y}{values of y coordinates of observed values}
+
+  \item{R}{number of iterations in bootstrap for function
+  envelopes}
+}
+\value{
+  an instance of \code{fittedCatenary} class
+}
+\description{
+  Takes observed points and fits catenary and parabola
+}
+\examples{
+x <- runif(100,0,4)
+y <- f(x,c1=1,c2=2,lambda=3) + rnorm(100,sd=0.1)
+tmp <- fittedCatenary(x,y)
+}
+\author{
+  Jono Tuke, Matthew Roughan
+}
+

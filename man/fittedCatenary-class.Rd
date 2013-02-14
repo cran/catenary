@@ -1,0 +1,25 @@
+\name{fittedCatenary-class}
+\alias{fittedCatenary-class}
+\title{Create a class for fittedCatenary}
+\value{
+  an object of class \code{fittedCatenary}
+}
+\description{
+  Creates a catenary object from observed data
+}
+\section{Slots}{
+  \itemize{ \item c1: shape parameter \item c2: x-location
+  parameter \item lambda: y-location parameter \item
+  endpoints: left and right endpoint in data frame \item L:
+  length of caternary \item obs: data frame of observed
+  data \item fitted: fitted points for plots and prediction
+  \item ss: sum of squares for fitted parabola and catenary
+  }
+}
+\examples{
+getSlots("fittedCatenary")
+}
+\author{
+  Jono Tuke, Matthew Roughan
+}
+

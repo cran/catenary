@@ -1,0 +1,8 @@
+Version 1.0
+-------------------------------------------------------------------------
+
+NEW FEATURES
+
+* catenary class with methods to plot and give properties
+
+* fittedCatenary class to create a catenary object from observed data

@@ -1,0 +1,31 @@
+\name{fitMaxCat}
+\alias{fitMaxCat}
+\title{Get catenary parameters for given endpoints}
+\usage{
+  fitMaxCat(endpoints)
+}
+\arguments{
+  \item{endpoints}{2x2 data frame with first column x
+  second column is y}
+}
+\value{
+  vector of parameters
+}
+\description{
+  Takes endpoints in data frame and returns parameters of
+  max catenary
+}
+\note{
+  February 11 2013
+}
+\examples{
+x <- c(-1,1)
+y <- c(2,2)
+endpoints <- data.frame(x=x,y=y)
+fitMaxCat(endpoints)
+}
+\author{
+  Jono Tuke, Matthew Roughan
+}
+\keyword{internal}
+

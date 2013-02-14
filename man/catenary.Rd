@@ -1,0 +1,58 @@
+\docType{package}
+\name{catenary}
+\alias{catenary}
+\alias{catenary-package}
+\title{Creates a catenary object}
+\usage{
+  catenary(c1 = 1, c2 = 0, lambda = 0, x0 = -1, x1 = 1,
+    endpoints = NULL, L = NULL, type = "natural")
+}
+\arguments{
+  \item{c1}{shape parameter}
+
+  \item{c2}{x-location parameter}
+
+  \item{lambda}{y-location parameter}
+
+  \item{x0}{left point}
+
+  \item{x1}{right point}
+
+  \item{endpoints}{2 x 2 matrix or data frame with column x
+  and y and rows left and right}
+
+  \item{L}{length of catenary}
+
+  \item{type}{max or natural if length not given}
+}
+\value{
+  an instance of \code{catenary} class
+}
+\description{
+  First constructor that takes c1, c2, lambda, x0 and x1
+  Second constructor takes endpoints and either length or
+  gives natural or maximum catenary (one that just touches
+  the ground)
+
+  Contains methods to fit catenary to observed points, also
+  can compare to parabola.
+}
+\examples{
+cat1 <- catenary()
+plot(cat1)
+cat2 <- catenary(c1=1,c2=2,lambda=3,x0=0,x1=4)
+plot(cat2)
+x <- c(-1,1)
+y <- c(2,2)
+endpoints <- data.frame(x=x,y=y)
+cat3 <- catenary(endpoints=endpoints,L=5)
+plot(cat3)
+cat4 <- catenary(endpoints=endpoints,type='natural')
+plot(cat4)
+cat5 <- catenary(endpoints=endpoints,type='max')
+plot(cat5)
+}
+\author{
+  Jono Tuke, Matthew Roughan
+}
+

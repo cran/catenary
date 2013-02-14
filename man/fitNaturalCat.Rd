@@ -1,0 +1,31 @@
+\name{fitNaturalCat}
+\alias{fitNaturalCat}
+\title{Get catenary parameters for given endpoints and length}
+\usage{
+  fitNaturalCat(endpoints)
+}
+\arguments{
+  \item{endpoints}{2x2 data frame with first column x
+  second column is y}
+}
+\value{
+  vector of parameters
+}
+\description{
+  Takes endpoints in data frame and length and returns
+  parameters of catenary
+}
+\note{
+  February 11 2013
+}
+\examples{
+x <- c(-1,1)
+y <- c(2,2)
+endpoints <- data.frame(x=x,y=y)
+fitNaturalCat(endpoints)
+}
+\author{
+  Jono Tuke <simon.tuke@adelaide.edu.au>
+}
+\keyword{internal}
+

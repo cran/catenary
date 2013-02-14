@@ -1,0 +1,33 @@
+\name{getCatLength}
+\alias{getCatLength}
+\title{Calculates length of catenary}
+\usage{
+  getCatLength(x0, x1, c1, c2)
+}
+\arguments{
+  \item{x0}{left endpoint}
+
+  \item{x1}{right endpoint}
+
+  \item{c1}{catenary parameter}
+
+  \item{c2}{catenary parameter}
+}
+\value{
+  length of catenary
+}
+\description{
+  Takes left and right endpoints and catenary parameters
+  and gives length
+}
+\note{
+  February 11 2013
+}
+\examples{
+getCatLength(x0=-1,x1=1,c1=1,c2=2)
+}
+\author{
+  Jono Tuke <simon.tuke@adelaide.edu.au>
+}
+\keyword{internal}
+

@@ -1,0 +1,32 @@
+\name{f}
+\alias{f}
+\title{Returns catenary value for given x}
+\usage{
+  f(x, c1, c2, lambda)
+}
+\arguments{
+  \item{x}{x value}
+
+  \item{c1}{see \link{catenary}}
+
+  \item{c2}{see \link{catenary}}
+
+  \item{lambda}{see \link{catenary}}
+}
+\value{
+  y value
+}
+\description{
+  Takes catenary parameters and x and return y.
+}
+\note{
+  February 02 2013
+}
+\examples{
+f(0,1,2,3)
+}
+\author{
+  Jono Tuke, Matthew Roughan
+}
+\keyword{internal}
+

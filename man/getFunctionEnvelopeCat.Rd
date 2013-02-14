@@ -1,0 +1,36 @@
+\name{getFunctionEnvelopeCat}
+\alias{getFunctionEnvelopeCat}
+\title{Function to return function envelope for catenary}
+\usage{
+  getFunctionEnvelopeCat(data, R = 1000, initial, x)
+}
+\arguments{
+  \item{data}{data frame with columns \code{x} and
+  \code{y}}
+
+  \item{initial}{vector of starting values (c1,c2,lambda)}
+}
+\value{
+  data frame with x, lwr and upr
+}
+\description{
+  Use boostrap to get bands of possible fits to data using
+  catenary
+}
+\note{
+  February 12 2013
+}
+\examples{
+x <- runif(100,-2,2)
+y <- f(x=x,c1=1,c2=2,lambda=3) + rnorm(100)
+df <- data.frame(x=x,y=y)
+plot(y~x,data=df,pch=16,cex=0.5)
+bounds <- getFunctionEnvelopeCat(data=df,initial=c(1,2,3),x=seq(-2,2,l=100))
+lines(bounds$x,bounds$lwr)
+lines(bounds$x,bounds$upr)
+}
+\author{
+  Jono Tuke, Matthew Roughan
+}
+\keyword{internal}
+
