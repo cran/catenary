@@ -5,18 +5,15 @@
 #' @exportClass catenary
 #' @name catenary-class
 #' @rdname catenary-class
-#' @section Slots: \itemize{
-#'    \item c1: shape parameter
-#'    \item c2: x-location parameter
-#'    \item lambda: y-location parameter 
-#'    \item endpoints: left and right endpoint in data
-#'    frame
-#'    \item L: length of caternary
-#' }
+#' @slot c1 shape parameter
+#' @slot c2 x-location parameter
+#' @slot lambda y-location parameter
+#' @slot endpoints left and right endpoint in data frame
+#' @slot L length of catenary
 #' @return an object of class \code{catenary}
 #' @examples
 #' getSlots("catenary")
-setClass(
+methods::setClass(
   Class="catenary",
   representation(
     c1 = "numeric",
@@ -107,27 +104,33 @@ catenary <- function(c1=1,c2=0,lambda=0,x0=-1,x1=1,endpoints=NULL,L=NULL,type="n
   endpoints <- data.frame(x=c(x0,x1),y=c(y0,y1))
   row.names(endpoints) <- c('left','right')
   L <- getCatLength(x0=x0,x1=x1,c1=c1,c2=c2)
-  new('catenary',c1=c1,c2=c2,lambda=lambda,endpoints=endpoints,L=L)
+  methods::new('catenary',c1=c1,c2=c2,lambda=lambda,endpoints=endpoints,L=L)
 }
-#' Plot method for catenary
+#' Set generic plot
 #' 
-#' basic plot with endpoints
+#' Overload plot
 #' 
+#' @param x x-coordinate
+#' @param y y-coordinate
+#' @param ... extra
 #' @export
-#' @author Jono Tuke, Matthew Roughan
+#' @name plot
+#' @docType methods
+methods::setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 #' @aliases plot,catenary-method
-#' @rdname plot
+#' @name plot
 #' @examples
 #' tmp <- catenary(c1=1,c2=3,lambda=1,x0=0,x1=4)
 #' plot(tmp)
-setMethod(f='plot',
+methods::setMethod(f='plot',
           signature='catenary',
           definition = function(x,y,...){
             xpts <- ypts <- NULL
             tmp <- getPoints(x)
-            p <- qplot(x=xpts,y=ypts,data=tmp,geom='line')
-            p <- p + geom_point(aes(x=x,y=y),data=x@endpoints)
-            p <- p + labs(x="x",y="y")
+            p <- ggplot2::ggplot(data=tmp,ggplot2::aes(x=xpts,y = ypts))
+            p <- p + ggplot2::geom_line()
+            p <- p + ggplot2::geom_point(ggplot2::aes(x=x,y=y),data=x@endpoints)
+            p <- p + ggplot2::labs(x="x",y="y")
             return(p)
           }
 )
@@ -138,15 +141,18 @@ setMethod(f='plot',
 #' @return data frame of points
 #' @export
 #' @keywords internal
+#' @rdname getPoints
+#' @name getPoints
 #' @docType methods
-setGeneric('getPoints',
+methods::setGeneric('getPoints',
            function(object){
              standardGeneric('getPoints')  
            }
 )
 #' @aliases getPoints,catenary-method
 #' @rdname getPoints
-setMethod('getPoints',
+#' @name getPoints
+methods::setMethod('getPoints',
           signature = 'catenary',
           definition = function(object){
             xpts <- seq(object@endpoints[1,1],object@endpoints[2,1],l=100)
@@ -159,20 +165,23 @@ setMethod('getPoints',
 #' 
 #' Gives vertex point
 #' 
+#' @param object a catenary object
 #' @return coordinates of vertex
 #' @export
 #' @docType methods
-setGeneric('vertex',
+#' @name vertex
+methods::setGeneric('vertex',
            function(object){
              standardGeneric('vertex')  
            }
 )
 #' @aliases vertex,catenary-method
 #' @rdname vertex
+#' @name vertex
 #' @examples
 #' cat <- catenary(c1=1,c2=1,lambda=1)
 #' vertex(cat)
-setMethod('vertex',
+methods::setMethod('vertex',
           signature = 'catenary',
           definition = function(object){
             x <- object@c2
@@ -184,20 +193,23 @@ setMethod('vertex',
 #' 
 #' Gives min or max
 #' 
+#' @param object a catenary object
 #' @return gives min or max values of catenary
 #' @export
 #' @docType methods
-setGeneric('minmax',
+#' @name minmax
+methods::setGeneric('minmax',
            function(object){
              standardGeneric('minmax')  
            }
 )
 #' @aliases minmax,catenary-method
 #' @rdname minmax
+#' @name minmax
 #' @examples
 #' cat <- catenary(c1=1,c2=1,lambda=1)
 #' minmax(cat)
-setMethod('minmax',
+methods::setMethod('minmax',
           signature = 'catenary',
           definition = function(object){
             if(object@c1 > 0){
@@ -219,35 +231,35 @@ setMethod('minmax',
 #'
 #' @param x A \code{catenary} object
 #' @return length
-#' @name accessors
 #' @export
 #' @docType methods
-#' @rdname accessor-methods
-#' @author Jono Tuke, Matthew Roughan
+#' @name L
 #' @examples
 #' tmp <- catenary(c1=1,c2=2,lambda=3,x0=0,x1=3)
 #' L(tmp)
-setGeneric("L",function(x) {
+methods::setGeneric("L",function(x) {
   standardGeneric("L")
 })
-#' @rdname accessor-methods
+#' @rdname L
 #' @aliases L,catenary-method
-setMethod("L", "catenary", function(x){
+#' @name L
+methods::setMethod("L", "catenary", function(x){
   slot(x,"L")
 })
-
-#' Summary method for catenary
+#' summary function
 #' 
-#' Nicely formatted output
+#' gives pretty summary
 #' 
+#' @param x catenary object
+#' @param ... extra
+#' @param na.rm boolean to remove NAs
 #' @export
-#' @author Jono Tuke, Matthew Roughan
+#' @name Summary
+methods::setGeneric("Summary", function(x,...,na.rm) standardGeneric("Summary"))
 #' @aliases Summary,catenary-method
 #' @rdname Summary
-#' @examples
-#' tmp <- catenary(c1=1,c2=3,lambda=1,x0=0,x1=4)
-#' Summary(tmp)
-setMethod(f='Summary',
+#' @name Summary
+methods::setMethod(f='Summary',
           signature='catenary',
           definition = function(x,..., na.rm=FALSE){
             output <- list()

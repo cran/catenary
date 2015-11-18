@@ -33,7 +33,7 @@ getFunctionEnvelopeCat <- function(data,R=1000,initial,x){
     return(pred)
   }
   # Fit boot strap
-  b <- boot(data=data,statistic=fn,R=R,x=x,initial=initial)
+  b <- boot::boot(data=data,statistic=fn,R=R,x=x,initial=initial)
   # b contains all the sample predicted values so get this
   tmp <- apply(b$t,2,quantile,probs=c(0.025,0.975),na.rm=TRUE)
   bounds <- data.frame(x=x,lwr=tmp[1,],upr=tmp[2,])

@@ -20,7 +20,7 @@
 #' @return an object of class \code{fittedCatenary}
 #' @examples
 #' getSlots("fittedCatenary")
-setClass(
+methods::setClass(
   Class="fittedCatenary",
   representation(
     obs = "data.frame",
@@ -71,8 +71,15 @@ fittedCatenary <- function(x,y,R=1000){
   fitted$cat_upr <- bounds$upr
   cat <- catenary(c1=coef[1],c2=coef[2],x0=min(x),x1=max(x),lambda=coef[3])
   obs <- data.frame(x,y)
-  new('fittedCatenary',obs=obs,fitted=fitted,cat,ss=ss)
+  methods::new('fittedCatenary',obs=obs,fitted=fitted,cat,ss=ss)
 }
+#' Generic plot
+#' 
+#' @param x x-coordinate
+#' @param y y-coordinate
+#' @export
+#' @name plot
+methods::setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 #' Plot method for fitted Catenary
 #' 
 #' Method that can plot fits and function envelopes 
@@ -83,47 +90,48 @@ fittedCatenary <- function(x,y,R=1000){
 #' @param envelope type of envelope to show at present two choices "cat" and "para"
 #' @aliases plot,fittedCatenary-method
 #' @rdname plot
-setMethod(f='plot',
+#' @name plot
+methods::setMethod(f='plot',
           signature='fittedCatenary',
           definition = function(x,y,fit="none",envelope="none",...){
-            p <- qplot(x=x,y=y,data=x@obs,geom='point')
+            # Hack to get rid of warnings about global variables. 
+            para <- NULL; para_lwr <- NULL; para_upr <- NULL; cat_lwr <- NULL; cat_upr <- NULL
+            p <- ggplot2::ggplot(data = x@obs, ggplot2::aes(x=x, y=y)) +
+              ggplot2::geom_point()
             if("para" %in% fit){
-              p <- p + geom_line(aes(x=x,y=para,col='parabola'),data=x@fitted)
+              p <- p + ggplot2::geom_line(ggplot2::aes(x=x,y=para,col='parabola'),data=x@fitted)
             }
             if("para" %in% envelope){
-              p <- p + geom_ribbon(aes(x=x,y=para,ymin=para_lwr,
+              p <- p + ggplot2::geom_ribbon(ggplot2::aes(x=x,y=para,ymin=para_lwr,
                                        ymax=para_upr,fill='parabola'),
                                    alpha=0.2,data=x@fitted)
             }
             if("cat" %in% fit){
-              p <- p + geom_line(aes(x=x,y=cat,col='catenary'),data=x@fitted)
+              p <- p + ggplot2::geom_line(ggplot2::aes(x=x,y=cat,col='catenary'),data=x@fitted)
             }
             if("cat" %in% envelope){
-              p <- p + geom_ribbon(aes(x=x,y=cat,ymin=cat_lwr,
+              p <- p + ggplot2::geom_ribbon(ggplot2::aes(x=x,y=cat,ymin=cat_lwr,
                                        ymax=cat_upr,fill='catenary'),
                                    alpha=0.2,data=x@fitted)
             }
-            p <- p + labs(col='fit',fill='envelope')
-            p <- p + scale_colour_manual(
+            p <- p + ggplot2::labs(col='fit',fill='envelope')
+            p <- p + ggplot2::scale_colour_manual(
               values = c("catenary" = "red","parabola" = "blue")) +
-              scale_fill_manual(values=c('catenary'='red','parabola'='blue'))
+              ggplot2::scale_fill_manual(values=c('catenary'='red','parabola'='blue'))
             return(p)
           }
 )
+methods::setGeneric("Summary", function(x, ...,na.rm) standardGeneric("Summary"))
 #' Summary method for fittedCalc
 #' 
 #' Nicely presented summary
 #' 
-#' @export
 #' @author Jono Tuke, Matthew Roughan
 #' @aliases Summary,fittedCatenary-method
 #' @rdname Summary
-#' @examples
-#' x <- runif(100,0,4)
-#' y <- f(x,c1=1,c2=2,lambda=3) + rnorm(100,sd=0.1)
-#' tmp <- fittedCatenary(x,y,R=10) 
-#' Summary(tmp)
-setMethod(f='Summary',
+#' @name Summary
+#' @export
+methods::setMethod(f='Summary',
           signature='fittedCatenary',
           definition = function(x,...,na.rm=FALSE){
             output <- callNextMethod(x)

@@ -6,4 +6,13 @@
 #' @name catenary
 #' @author Jono Tuke, Matthew Roughan
 #' @docType package
+#' @importFrom stats lm
+#' @importFrom stats nls
+#' @importFrom stats optim
+#' @importFrom stats predict
+#' @importFrom stats quantile
+#' @importFrom stats resid
+#' @importFrom stats uniroot
+#' @importFrom methods callNextMethod
+#' @importFrom methods slot
 NULL
