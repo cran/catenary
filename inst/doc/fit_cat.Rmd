@@ -1,0 +1,48 @@
+---
+title: "Fitting a catenary to data"
+author: "Jono Tuke"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fitting a catenary to data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Simulate dataset
+We simulate a dataset with x-points from a uniform (0,4) distribution, the y-points are from the function
+
+$$
+y_i = c_1 \cosh\left(\frac{x_i-c_2}{c_1}\right) + \lambda + \epsilon_i,
+$$
+where $\epsilon_i \sim N(0,\sigma=0.1)$.
+```{r, warning=FALSE, message=FALSE}
+library(catenary)
+library(tidyverse)
+
+sim_data <- data_frame(x = runif(100,0,4))
+sim_data  <- sim_data %>% 
+  mutate(y = f(x, c1 = 1, c2 = 2, lambda = 3))
+sim_data  <- sim_data %>% 
+  mutate(y = y + rnorm(100,0,0.1))
+
+sim_data %>% ggplot(aes(x,y)) + geom_point()
+```
+
+# Fitting a catenary to the data
+
+We fit the catenary with the 
+
+```{r}
+sim_data_cat <- fittedCatenary(sim_data$x, sim_data$y)
+plot(sim_data_cat,fit='cat', envelope='cat')
+show(sim_data_cat)
+```
+
+## Get summary statistics of goodness of fit
+Unfortunately R-square values are not appropriate for non-linear methods, which is how the catenary model is fitted to the data - see for example [why-is-there-no-r-squared-for-nonlinear-regression](http://blog.minitab.com/blog/adventures-in-statistics-2/why-is-there-no-r-squared-for-nonlinear-regression). Instead I have added a new method `gof()` which will take a fitted catenary object and return the summary statistics like Akaike's information criterion and Bayesian information criterion, which can be used to assess model fit.
+
+```{r}
+gof(sim_data_cat)
+```
+

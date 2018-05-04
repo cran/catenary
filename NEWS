@@ -1,3 +1,9 @@
+Version 1.1.2
+-------------
+
+Correct fitCatEndPt function so do not get "if() with conditions of length greater than one" warning.
+
+
 Version 1.1.1
 -------------
 

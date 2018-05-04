@@ -30,4 +30,3 @@ fitMaxCat(endpoints)
 Jono Tuke, Matthew Roughan
 }
 \keyword{internal}
-

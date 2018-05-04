@@ -12,7 +12,7 @@
 #'    \item lambda: y-location parameter 
 #'    \item endpoints: left and right endpoint in data
 #'    frame
-#'    \item L: length of caternary
+#'    \item L: length of catenary
 #'    \item obs: data frame of observed data
 #'    \item fitted: fitted points for plots and prediction
 #'    \item ss: sum of squares for fitted parabola and catenary
@@ -25,6 +25,7 @@ methods::setClass(
   representation(
     obs = "data.frame",
     fitted = "data.frame",
+    gof = "data.frame",
     ss = "numeric"),
   contains = 'catenary'
 )
@@ -63,6 +64,9 @@ fittedCatenary <- function(x,y,R=1000){
            error = function(e){stop("cannot fit catenary")},
            finally=print("Fitted catenary"))
   ss <- c(para=sum((obs.lm$residuals)^2),catenary=sum((resid(obs.cat))^2))
+  gof <- as.data.frame(dplyr::bind_rows(cat=broom::glance(obs.cat), 
+                          para=broom::glance(obs.lm), 
+                          .id="model"))
   coef <- coef(obs.cat)
   fitted$cat <- predict(obs.cat,newdata=fitted)
   bounds <- getFunctionEnvelopeCat(data=data.frame(x=x,y=y),
@@ -71,7 +75,7 @@ fittedCatenary <- function(x,y,R=1000){
   fitted$cat_upr <- bounds$upr
   cat <- catenary(c1=coef[1],c2=coef[2],x0=min(x),x1=max(x),lambda=coef[3])
   obs <- data.frame(x,y)
-  methods::new('fittedCatenary',obs=obs,fitted=fitted,cat,ss=ss)
+  methods::new('fittedCatenary',obs=obs,fitted=fitted,cat,ss=ss,gof=gof)
 }
 #' Generic plot
 #' 
@@ -121,21 +125,38 @@ methods::setMethod(f='plot',
             return(p)
           }
 )
-methods::setGeneric("Summary", function(x, ...,na.rm) standardGeneric("Summary"))
-#' Summary method for fittedCalc
+#' show method for fitted Catenary
 #' 
-#' Nicely presented summary
-#' 
-#' @author Jono Tuke, Matthew Roughan
-#' @aliases Summary,fittedCatenary-method
-#' @rdname Summary
-#' @name Summary
 #' @export
-methods::setMethod(f='Summary',
-          signature='fittedCatenary',
-          definition = function(x,...,na.rm=FALSE){
-            output <- callNextMethod(x)
-            output$fits <- x@ss
-            return(output)
-          }
+#' @author Jono Tuke, Matthew Roughan
+#' @param object fittedCatenary object
+#' @aliases show,fittedCatenary-method
+#' @rdname show
+#' @name show
+methods::setMethod(f = "show", signature = "fittedCatenary", 
+                   definition = function(object){
+                     output <- methods::callNextMethod()
+                     output$ss <- object@ss
+                     return(output)
+                   })
+#' Get goodness of fit statistics for fitted catenary
+#'
+#' Returns data frame of summary stats for models
+#'
+#' @param x A fittedCatenary object
+#' @return data frame of summary statistics
+#' @export
+#' @docType methods
+#' @name gof
+methods::setGeneric("gof",function(x) {
+  standardGeneric("gof")
+})
+#' @aliases gof,fittedCatenary-method
+#' @rdname gof
+#' @name gof
+methods::setMethod(f = "gof", 
+                   signature = "fittedCatenary", 
+                   definition = function(x){
+                     slot(x,"gof")
+                   }
 )

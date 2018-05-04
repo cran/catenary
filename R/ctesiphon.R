@@ -1,4 +1,4 @@
-#' Coordinates of external and iternal edge of the Ctesiphon
+#' Coordinates of external and internal edge of the Ctesiphon
 #' 
 #' Using an image of the Ctesiphon, the x and y coordinates of
 #' the internal and external edge were recorded. The original image 

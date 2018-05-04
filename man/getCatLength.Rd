@@ -31,4 +31,3 @@ getCatLength(x0=-1,x1=1,c1=1,c2=2)
 Jono Tuke <simon.tuke@adelaide.edu.au>
 }
 \keyword{internal}
-

@@ -3,6 +3,7 @@
 \docType{package}
 \name{catenary}
 \alias{catenary}
+\alias{catenary}
 \alias{catenary-package}
 \title{Creates a catenary object}
 \usage{
@@ -56,4 +57,3 @@ plot(cat5)
 \author{
 Jono Tuke, Matthew Roughan
 }
-

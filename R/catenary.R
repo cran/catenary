@@ -23,7 +23,9 @@ methods::setClass(
     L="numeric"
   ),
   validity = function(object){
-    if(length(object@c1) >1 | length(object@c2) > 1 | length(object@lambda) > 1){
+    if(length(object@c1) >1 | 
+       length(object@c2) > 1 | 
+       length(object@lambda) > 1){
       stop ("c1, c2, and lambda must all be scalars")
     }
     if(length(object@c1) == 0 | length(object@c2) == 0 | 
@@ -136,7 +138,7 @@ methods::setMethod(f='plot',
 )
 #' Method to get points for catenary
 #' 
-#' Gives points for ploting
+#' Gives points for plotting
 #' 
 #' @return data frame of points
 #' @export
@@ -254,21 +256,24 @@ methods::setMethod("L", "catenary", function(x){
 #' @param ... extra
 #' @param na.rm boolean to remove NAs
 #' @export
-#' @name Summary
-methods::setGeneric("Summary", function(x,...,na.rm) standardGeneric("Summary"))
-#' @aliases Summary,catenary-method
-#' @rdname Summary
-#' @name Summary
-methods::setMethod(f='Summary',
+#' @docType methods
+#' @name show
+methods::setGeneric("show", function(object) {
+  standardGeneric("show")
+})
+#' @aliases show,catenary-method
+#' @rdname show
+#' @name show
+methods::setMethod(f='show',
           signature='catenary',
-          definition = function(x,..., na.rm=FALSE){
+          definition = function(object){
             output <- list()
-            output$parameters <- data.frame(value = c(x@c1,x@c2,x@lambda))
+            output$parameters <- data.frame(value = c(object@c1,object@c2,object@lambda))
             rownames(output$parameters) <- c("c1",'c2','lambda')
-            output$endpoints <- x@endpoints
-            output$length <- L(x)
-            tmp <- data.frame(value=c(L(x),vertex(x)))
-            output$vertex <- vertex(x)
+            output$endpoints <- object@endpoints
+            output$length <- L(object)
+            tmp <- data.frame(value=c(L(object),vertex(object)))
+            output$vertex <- vertex(object)
             return(output)
           }
 )

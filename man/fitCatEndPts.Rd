@@ -33,4 +33,3 @@ fitCatEndPts(endpoints,L)
 Jono Tuke, Matthew Roughan
 }
 \keyword{internal}
-

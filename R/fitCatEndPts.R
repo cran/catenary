@@ -18,7 +18,7 @@
 #' L <- 3
 #' fitCatEndPts(endpoints,L)
 fitCatEndPts <- function(endpoints,L){
-  if(L < minmaxLength(endpoints)){
+  if(L < minmaxLength(endpoints)['min']){
     stop("Not possible: length is too short")
   }
   fn <- function(para,endpoints,L){
@@ -45,3 +45,5 @@ fitCatEndPts <- function(endpoints,L){
   par <- c(c1=tmp$par[1],c2=tmp$par[2],lambda=tmp$par[3])
   return(par)
 }
+
+

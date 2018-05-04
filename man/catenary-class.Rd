@@ -22,7 +22,7 @@ Creates a basic catenary with endpoints
 
 \item{\code{L}}{length of catenary}
 }}
+
 \examples{
 getSlots("catenary")
 }
-

@@ -30,4 +30,3 @@ fitNaturalCat(endpoints)
 Jono Tuke <simon.tuke@adelaide.edu.au>
 }
 \keyword{internal}
-

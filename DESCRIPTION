@@ -1,8 +1,8 @@
 Package: catenary
 Type: Package
 Title: Fits a Catenary to Given Points
-Version: 1.1.1
-Date: 2015-11-18
+Version: 1.1.2
+Date: 2018-05-04
 Authors@R: c(
     person("Jonathan", "Tuke",email ="simon.tuke@adelaide.edu.au", role = c("aut", "cre")),
     person("Matthew", "Roughan",email ="matthew.roughan@adelaide.edu.au", role = "aut"))
@@ -11,12 +11,14 @@ Description: Gives methods to create a catenary object and then plot it and get
     catenary fitted to data.
 License: GPL-3
 Depends: R (>= 2.15.0),
-Imports: ggplot2, boot, methods
-RoxygenNote: 5.0.1
+Imports: ggplot2, boot, methods, tidyverse, dplyr, broom
+RoxygenNote: 6.0.1
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2015-11-18 09:17:04 UTC; jonathantuke
+Packaged: 2018-05-04 07:50:11 UTC; simontuke
 Author: Jonathan Tuke [aut, cre],
   Matthew Roughan [aut]
 Maintainer: Jonathan Tuke <simon.tuke@adelaide.edu.au>
 Repository: CRAN
-Date/Publication: 2015-11-18 15:30:21
+Date/Publication: 2018-05-04 07:59:41 UTC

@@ -3,6 +3,7 @@
 \docType{methods}
 \name{L}
 \alias{L}
+\alias{L}
 \alias{L,catenary-method}
 \title{Get length for catenary}
 \arguments{
@@ -18,4 +19,3 @@ Returns the length of catenary
 tmp <- catenary(c1=1,c2=2,lambda=3,x0=0,x1=3)
 L(tmp)
 }
-

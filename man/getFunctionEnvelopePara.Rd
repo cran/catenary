@@ -31,4 +31,3 @@ lines(bounds$x,bounds$upr)
 Jono Tuke, Matthew Roughan
 }
 \keyword{internal}
-

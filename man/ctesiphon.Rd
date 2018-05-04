@@ -3,7 +3,7 @@
 \docType{data}
 \name{ctesiphon}
 \alias{ctesiphon}
-\title{Coordinates of external and iternal edge of the Ctesiphon}
+\title{Coordinates of external and internal edge of the Ctesiphon}
 \format{A list with two data frames}
 \description{
 Using an image of the Ctesiphon, the x and y coordinates of
@@ -17,4 +17,3 @@ and the image with the points overlaid can be found in the inst folder
 }
 }
 \keyword{datasets}
-

@@ -27,4 +27,3 @@ tmp <- fittedCatenary(x,y)
 \author{
 Jono Tuke, Matthew Roughan
 }
-

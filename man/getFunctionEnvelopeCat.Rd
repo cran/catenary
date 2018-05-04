@@ -15,7 +15,7 @@ getFunctionEnvelopeCat(data, R = 1000, initial, x)
 data frame with x, lwr and upr
 }
 \description{
-Use boostrap to get bands of possible fits to data using catenary
+Use bootstrap to get bands of possible fits to data using catenary
 }
 \note{
 February 12 2013
@@ -33,4 +33,3 @@ lines(bounds$x,bounds$upr)
 Jono Tuke, Matthew Roughan
 }
 \keyword{internal}
-

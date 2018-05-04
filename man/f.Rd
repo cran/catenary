@@ -32,4 +32,3 @@ f(0,1,2,3)
 Jono Tuke, Matthew Roughan
 }
 \keyword{internal}
-

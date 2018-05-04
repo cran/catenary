@@ -1,6 +1,6 @@
 #' Function to return function envelope for catenary
 #' 
-#' Use boostrap to get bands of possible fits to data using catenary
+#' Use bootstrap to get bands of possible fits to data using catenary
 #'
 #' @param data data frame with columns \code{x} and \code{y}
 #' @param initial vector of starting values (c1,c2,lambda)

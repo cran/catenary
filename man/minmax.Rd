@@ -3,6 +3,7 @@
 \docType{methods}
 \name{minmax}
 \alias{minmax}
+\alias{minmax}
 \alias{minmax,catenary-method}
 \title{Method to get min and max of catenary}
 \arguments{
@@ -18,4 +19,3 @@ Gives min or max
 cat <- catenary(c1=1,c2=1,lambda=1)
 minmax(cat)
 }
-

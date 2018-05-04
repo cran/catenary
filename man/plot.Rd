@@ -3,7 +3,10 @@
 \docType{methods}
 \name{plot}
 \alias{plot}
+\alias{plot}
 \alias{plot,catenary-method}
+\alias{plot}
+\alias{plot}
 \alias{plot,fittedCatenary-method}
 \title{Set generic plot}
 \arguments{
@@ -35,4 +38,3 @@ plot(tmp)
 \author{
 Jono Tuke, Matthew Roughan
 }
-
